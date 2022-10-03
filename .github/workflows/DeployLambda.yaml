@@ -67,7 +67,7 @@ jobs:
       - name: Deploy to AWS CloudFormation
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: cloudformation-demo
+          name: log-lambda-block
           template: artifact/LambdaCloudFormation.yaml
           parameter-overrides: Environment=-Test,SQSQueueArn="arn:aws:sqs:us-east-1:*:BooksDemotest.fifo",S3Arn="arn:aws:s3:::books-demo-logs-test",S3Name=books-demo-logs-test
           
