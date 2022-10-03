@@ -103,3 +103,11 @@ Resources:
       Code:
         S3Bucket: demo-loudformation-packages 
         S3Key: booksDemoLambda.zip
+
+  EventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !Sub ${SQSQueueArn}
+      FunctionName: !GetAtt lambdaFunction.Arn
+      BatchSize: 10
+      Enabled: true
