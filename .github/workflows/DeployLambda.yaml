@@ -69,5 +69,5 @@ jobs:
         with:
           name: cloudformation-demo
           template: artifact/LambdaCloudFormation.yaml
-          parameter-overrides: "Environment=-Test"
+          parameter-overrides: Environment=-Test,SQSQueueArn="arn:aws:sqs:us-east-1:*:BooksDemotest.fifo",S3Arn="arn:aws:s3:::books-demo-logs-test",S3Name=books-demo-logs-test
           
