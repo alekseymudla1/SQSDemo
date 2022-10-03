@@ -100,3 +100,6 @@ Resources:
       Environment:
         Variables:
           S3LogBucket: !Sub ${S3Name}
+      Code:
+        S3Bucket: demo-loudformation-packages 
+        S3Key: booksDemoLambda.zip
