@@ -71,5 +71,5 @@ jobs:
         with:
           name: log-lambda-block
           template: artifact/LambdaCloudFormation.yaml
-          parameter-overrides: Environment=-Test,SQSQueueArn="arn:aws:sqs:us-east-1:*:BooksDemotest.fifo",S3Arn="arn:aws:s3:::books-demo-logs-test",S3Name=books-demo-logs-test
+          parameter-overrides: Environment=-Test,S3Arn="arn:aws:s3:::books-demo-logs-test",S3Name=books-demo-logs-test
           
