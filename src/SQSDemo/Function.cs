@@ -54,7 +54,7 @@ namespace SQSDemo
             context.Logger.LogLine($"Processed message {message.Body}");
             var request = new PutObjectRequest
             {
-                BucketName = "books-demo-log",
+                BucketName = Environment.GetEnvironmentVariable("S3LogBucket"),
                 Key = Guid.NewGuid().ToString(),
                 ContentBody = message.Body
             };
