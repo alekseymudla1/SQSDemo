@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "cloudFormation demo"
+
+Parameters:
+  Environment:
+    Description: Environment Name
+    Type: String
+  SQSQueueArn:
+    Description: SQS queue Arn
+    Type: String
+  S3Arn:
+    Description: S3 bucket for log Arn
+    Type: String
+  S3Name:
+    Description: S3 bucket for log name
+    Type: String
+    
+Resources: 
+  lambdaFunctionIamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: !Sub booksdemo-lambda-policy-${Environment}
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogsEvents"
+                Resource: "*"
+              - Effect: "Allow"
+                Action: 
+                  - "s3:CreateAccessPoint"
+                  - "s3:PutAnalyticsConfiguration"
+                  - "s3:PutAccelerateConfiguration"
+                  - "s3:PutAccessPointConfigurationForObjectLambda"
+                  - "s3:DeleteObjectVersion"
+                  - "s3:RestoreObject"
+                  - "s3:DeleteAccessPoint"
+                  - "s3:CreateBucket"
+                  - "s3:DeleteAccessPointForObjectLambda"
+                  - "s3:ReplicateObject"
+                  - "s3:PutEncryptionConfiguration"
+                  - "s3:DeleteBucketWebsite"
+                  - "s3:AbortMultipartUpload"
+                  - "s3:PutLifecycleConfiguration"
+                  - "s3:UpdateJobPriority"
+                  - "s3:DeleteObject"
+                  - "s3:CreateMultiRegionAccessPoint"
+                  - "s3:DeleteBucket"
+                  - "s3:PutBucketVersioning"
+                  - "s3:PutIntelligentTieringConfiguration"
+                  - "s3:PutMetricsConfiguration"
+                  - "s3:PutBucketOwnershipControls"
+                  - "s3:PutReplicationConfiguration"
+                  - "s3:DeleteMultiRegionAccessPoint"
+                  - "s3:PutObjectLegalHold"
+                  - "s3:InitiateReplication"
+                  - "s3:UpdateJobStatus"
+                  - "s3:PutBucketCORS"
+                  - "s3:PutInventoryConfiguration"
+                  - "s3:PutObject"
+                  - "s3:PutBucketNotification"
+                  - "s3:DeleteStorageLensConfiguration"
+                  - "s3:PutBucketWebsite"
+                  - "s3:PutBucketRequestPayment"
+                  - "s3:PutObjectRetention"
+                  - "s3:PutBucketLogging"
+                  - "s3:CreateAccessPointForObjectLambda"
+                  - "s3:PutBucketObjectLockConfiguration"
+                  - "s3:ReplicateDelete"
+                Resource: !Sub ${S3Arn}
+              - Effect: Allow
+                Action:
+                  - sqs:ReceiveMessage
+                  - sqs:DeleteMessage
+                  - sqs:GetQueueAttributes
+                  - sqs:ChengeMessageVisibility
+                Resource: !Sub ${SQSQueueArn}
+                
+  lambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: CloudFormation demo lambda
+      FunctionName: !Sub books-demo-log-${Environment}
+      Handler: SQSDemo::SQSDemo.Function::FunctionHandler
+      MemorySize: 128
+      Role: !GetAtt lambdaFunctionIamRole.Arn
+      Runtime: dotnet6
+      Timeout: 20
+      Environment:
+        Variables:
+          S3LogBucket: !Sub ${S3Name}
