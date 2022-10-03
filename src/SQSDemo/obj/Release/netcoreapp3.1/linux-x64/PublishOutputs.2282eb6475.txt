@@ -1,0 +1,9 @@
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\SQSDemo.dll
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\SQSDemo.deps.json
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\SQSDemo.runtimeconfig.json
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\SQSDemo.pdb
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Core.dll
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.SQSEvents.dll
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\AWSSDK.Core.dll
+C:\Users\Aleksei_Mudla\SQSDemo\src\SQSDemo\bin\Release\netcoreapp3.1\publish\AWSSDK.S3.dll
