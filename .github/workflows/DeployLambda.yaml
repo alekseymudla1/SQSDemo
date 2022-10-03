@@ -28,6 +28,9 @@ jobs:
       run: zip -qq -r ../booksDemoLambda.zip .
       working-directory: artifact/publish
 
+    - name: Copy CloudFormation Template
+      run: cp ./LambdaCloudFormation.yaml ./artifact/LambdaCloudFormation.yaml
+
     - uses: actions/upload-artifact@v3
       with:
         name: booksDemoLambda
