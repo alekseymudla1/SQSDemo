@@ -5,8 +5,8 @@ Parameters:
   Environment:
     Description: Environment Name
     Type: String
-  SQSQueueArn:
-    Description: SQS queue Arn
+  SQSName:
+    Description: SQS queue name
     Type: String
   S3Arn:
     Description: S3 bucket for log Arn
@@ -85,7 +85,16 @@ Resources:
                   - sqs:DeleteMessage
                   - sqs:GetQueueAttributes
                   - sqs:ChengeMessageVisibility
-                Resource: !Sub ${SQSQueueArn}
+                Resource:
+                  Fn::Join:
+                    - ""
+                    -
+                      - "arn:aws:sqs:"
+                      - Ref: "AWS::Region"
+                      - ":"
+                      - Ref: "AWS::AccountId"
+                      - ":"
+                      - !Sub ${SQSName}
                 
   lambdaFunction:
     Type: AWS::Lambda::Function
@@ -116,7 +125,7 @@ Resources:
             - ":"
             - Ref: "AWS::AccountId"
             - ":"
-            - "BooksDemotest.fifo"
+            - !Sub ${SQSName}
       FunctionName: !GetAtt lambdaFunction.Arn
       BatchSize: 10
       Enabled: true
