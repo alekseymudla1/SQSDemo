@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: lambda
+          name: booksDemoLambda
           path: artifact
           
       - name: Configure AWS Credentials
