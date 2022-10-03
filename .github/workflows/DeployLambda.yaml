@@ -56,7 +56,9 @@ jobs:
         with:
           name: booksDemoLambda
           path: artifact
-          
+      
+      - run: cat artifact/LambdaCloudFormation.yaml
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
