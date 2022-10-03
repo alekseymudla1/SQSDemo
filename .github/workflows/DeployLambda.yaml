@@ -25,12 +25,12 @@ jobs:
       uses: montudor/action-zip@v1
 
     - name: Zip output
-      run: zip -qq -r ../lambda.zip .
+      run: zip -qq -r ../booksDemoLambda.zip .
       working-directory: artifact/publish
 
     - uses: actions/upload-artifact@v3
       with:
-        name: lambda
+        name: booksDemoLambda
         path: ./artifact
         
     - name: Configure AWS Credentials
@@ -41,6 +41,6 @@ jobs:
         aws-region: us-east-1
         
     - name: Upload to S3
-      run: aws s3 cp ./artifact/lambda.zip s3://demo-loudformation-packages
+      run: aws s3 cp ./artifact/booksDemoLambda.zip s3://demo-loudformation-packages
       
     
