@@ -82,7 +82,9 @@ Resources:
                   - "s3:CreateAccessPointForObjectLambda"
                   - "s3:PutBucketObjectLockConfiguration"
                   - "s3:ReplicateDelete"
-                Resource: !Sub ${S3Arn}
+                Resource: 
+                  - !Sub ${S3Arn}
+                  - !Sub ${S3Arn}/*
               - Effect: Allow
                 Action:
                   - s3:ListJobs
