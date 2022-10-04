@@ -37,6 +37,10 @@ Resources:
                   - "logs:CreateLogStream"
                   - "logs:PutLogsEvents"
                 Resource: "*"
+        - PolicyName: !Sub booksdemo-lambda-policy-s3-${Environment}
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
               - Effect: "Allow"
                 Action: 
                   - "s3:CreateAccessPoint"
