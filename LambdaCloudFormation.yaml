@@ -37,7 +37,7 @@ Resources:
                   - "logs:CreateLogStream"
                   - "logs:PutLogsEvents"
                 Resource: "*"
-        - PolicyName: !Sub booksdemo-lambda-policy-s3-${Environment}
+        - PolicyName: !Sub booksdemo-lambda-policy-s3${Environment}
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -83,6 +83,19 @@ Resources:
                   - "s3:PutBucketObjectLockConfiguration"
                   - "s3:ReplicateDelete"
                 Resource: !Sub ${S3Arn}
+              - Effect: Allow
+                Action:
+                  - s3:ListJobs
+                  - s3:ListAccessPointsForObjectLambda
+                  - s3:ListMultiRegionAccessPoints
+                  - s3:PutStorageLensConfiguration
+                  - s3:ListAccessPoints
+                  - s3:CreateJob
+                  - s3:ListStorageLensConfigurations
+                  - s3:GetAccessPoint
+                  - s3:ListAllMyBuckets
+                  - s3:GetAccountPublicAccessBlock
+                Resource: "*"
               - Effect: Allow
                 Action:
                   - sqs:ReceiveMessage
