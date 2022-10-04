@@ -104,7 +104,7 @@ Resources:
       Handler: SQSDemo::SQSDemo.Function::FunctionHandler
       MemorySize: 128
       Role: !GetAtt lambdaFunctionIamRole.Arn
-      Runtime: dotnet6
+      Runtime: dotnetcore3.1
       Timeout: 20
       Environment:
         Variables:

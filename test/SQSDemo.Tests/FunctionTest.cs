@@ -34,6 +34,7 @@ namespace SQSDemo.Tests
             };
 
             var function = new Function();
+            Environment.SetEnvironmentVariable("S3LogBucket", "test");
             await function.FunctionHandler(sqsEvent, context);
 
             Assert.Contains("Processed message test1", logger.Buffer.ToString());
