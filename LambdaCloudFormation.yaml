@@ -154,10 +154,12 @@ Resources:
                 Resource: "*"
               - Effect: Allow
                 Action:
+                  - sqs:GetQueueUrl
+                  - sqs:ListDeadLetterSourceQueues
                   - sqs:ReceiveMessage
-                  - sqs:DeleteMessage
                   - sqs:GetQueueAttributes
-                  - sqs:ChengeMessageVisibility
+                  - sqs:ListQueueTags
+                  - sqs:DeleteMessage
                 Resource:
                   Fn::Join:
                     - ""
