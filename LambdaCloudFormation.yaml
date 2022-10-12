@@ -137,8 +137,10 @@ Resources:
                   - s3:ReplicateDelete
                   - s3:GetObjectVersion
                 Resource: 
-                  - !Sub ${S3Arn}
-                  - !Sub ${S3Arn}/*
+                  - Fn::ImportValue:
+                      Fn::Sub: booksDemoS3Arn${Environment}
+                  - Fn::ImportValue:
+                      Fn::Sub: booksDemoS3Arn${Environment}/*
               - Effect: Allow
                 Action:
                   - s3:ListJobs
@@ -183,7 +185,9 @@ Resources:
       Timeout: 20
       Environment:
         Variables:
-          S3LogBucket: !Sub ${S3Name}
+          S3LogBucket:
+            Fn::ImportValue:
+              Fn::Sub: booksDemoS3Name${Environment}
       Code:
         S3Bucket: demo-loudformation-packages 
         S3Key: booksDemoLambda.zip
