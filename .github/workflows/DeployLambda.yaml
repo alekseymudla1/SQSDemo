@@ -71,6 +71,6 @@ jobs:
         with:
           name: log-lambda-block
           template: artifact/LambdaCloudFormation.yaml
-          parameter-overrides: Environment=test,SQSName=BooksDemotest.fifo,S3Arn=arn:aws:s3:::books-demo-logs-test,S3Name=books-demo-logs-test
+          parameter-overrides: Environment=test
           no-fail-on-empty-changeset: "1"
           

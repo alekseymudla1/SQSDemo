@@ -5,15 +5,6 @@ Parameters:
   Environment:
     Description: Environment Name
     Type: String
-  SQSName:
-    Description: SQS queue name
-    Type: String
-  S3Arn:
-    Description: S3 bucket for log Arn
-    Type: String
-  S3Name:
-    Description: S3 bucket for log name
-    Type: String
     
 Resources: 
   lambdaFunctionIamRole:
