@@ -163,15 +163,8 @@ Resources:
                   - sqs:ListQueueTags
                   - sqs:DeleteMessage
                 Resource:
-                  Fn::Join:
-                    - ""
-                    -
-                      - "arn:aws:sqs:"
-                      - Ref: "AWS::Region"
-                      - ":"
-                      - Ref: "AWS::AccountId"
-                      - ":"
-                      - !Sub ${SQSName}
+                  Fn::ImportValue:
+                    Fn::Sub: booksDemoSQSArn${Environment}
                 
   lambdaFunction:
     Type: AWS::Lambda::Function
