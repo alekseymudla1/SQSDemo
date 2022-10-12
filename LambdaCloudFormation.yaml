@@ -196,15 +196,8 @@ Resources:
     Type: AWS::Lambda::EventSourceMapping
     Properties:
       EventSourceArn:
-        Fn::Join:
-          - ""
-          -
-            - "arn:aws:sqs:"
-            - Ref: "AWS::Region"
-            - ":"
-            - Ref: "AWS::AccountId"
-            - ":"
-            - !Sub ${SQSName}
+        Fn::ImportValue:
+          Fn::Sub: booksDemoSQSArn${Environment}
       FunctionName: !GetAtt lambdaFunction.Arn
       BatchSize: 10
       Enabled: true
