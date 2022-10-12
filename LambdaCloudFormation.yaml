@@ -139,8 +139,12 @@ Resources:
                 Resource: 
                   - Fn::ImportValue:
                       Fn::Sub: booksDemoS3Arn${Environment}
-                  - Fn::ImportValue:
-                      Fn::Sub: booksDemoS3Arn${Environment}/*
+                  - Fn::Join:
+                    - ""
+                    - 
+                      - Fn::ImportValue:
+                          Fn::Sub: booksDemoS3Arn${Environment}
+                      - /*
               - Effect: Allow
                 Action:
                   - s3:ListJobs
